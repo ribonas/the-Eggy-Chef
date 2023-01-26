@@ -1,19 +1,9 @@
 const myCanvas = document.querySelector("#canvas");
 const ctx = myCanvas.getContext("2d");
 
-/*const backgroundCanvas = document.createElement("canvas");
-backgroundCanvas.width = myCanvas.width;
-backgroundCanvas.height = myCanvas.height;
-const backgroundCtx = backgroundCanvas.getContext("2d");
-
 const background = new Image();
 background.src = './images/kitchenBg.jpg';
 
-background.onload = function() {
-  backgroundCtx.drawImage(background, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
-  ctx.drawImage(backgroundCanvas, 0, 0);
-};
-*/
 myCanvas.style.border = "2px solid black";
 
 const kitchen = new Image();
@@ -122,6 +112,7 @@ function checkCollision() {
 function animate() {
   if(!gameOver) {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    ctx.drawImage(background, 0, 0, myCanvas.width, myCanvas.height);
     drawEggs();
     drawChef();
     requestAnimationFrame(animate);
