@@ -11,8 +11,8 @@ kitchen.src = './images/kitchen.jpg';
 
 const chef = new Image();
 chef.src = './images/chef.png';
-const chefWidth = 120;
-const chefHeight = 180;
+const chefWidth = 150;
+const chefHeight = 250;
 let chefX = myCanvas.width / 2;
 let chefY = myCanvas.height - chefHeight;
 let chefSpeed = 5;
@@ -23,7 +23,7 @@ const eggHeight = 15;
 const eggWidth = 30;
 let eggX = myCanvas.width / 2;
 let eggY = myCanvas.height - eggHeight;
-let eggSpeed = 0.5;
+let eggSpeed = 0.3;
 
 const rottenEgg = new Image();
 rottenEgg.src = './images/rottenEgg.png';
@@ -31,7 +31,7 @@ const rottenEggHeight = 15;
 const rottenEggWidth = 30;
 let rottenEggX = myCanvas.width / 2;
 let rottenEggY = myCanvas.height - rottenEggHeight;
-let rottenEggSpeed = 0.5;
+let rottenEggSpeed = 0.3;
 
 const requiredEggs1 = 2;
 const requiredEggs2 = 5;
@@ -129,11 +129,11 @@ function animate() {
 function increaseEggSpeed() {
   if (currentLevel === 2) {
     eggs.forEach(egg => {
-      egg.speed += 0.2;
+      egg.speed += 0.1;
     });
   } else if (currentLevel === 3) {
     eggs.forEach(egg => {
-      egg.speed += 0.5;
+      egg.speed += 0.15;
     });
   }
 }
