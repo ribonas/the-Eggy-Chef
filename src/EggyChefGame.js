@@ -4,7 +4,6 @@ const ctx = myCanvas.getContext("2d");
 const background = new Image();
 background.src = './images/kitchenBg.jpg';
 let backgroundLoaded = false;
-background.onload = function () { backgroundLoaded = true };
 
 const kitchen = new Image();
 kitchen.src = './images/kitchen.jpg';
@@ -19,16 +18,16 @@ let chefSpeed = 10;
 
 const eggImage = new Image();
 eggImage.src = './images/egg.png';
-const eggHeight = 15;
-const eggWidth = 30;
+const eggHeight = 30;
+const eggWidth = 15;
 let eggX = myCanvas.width / 2;
 let eggY = myCanvas.height - eggHeight;
 let eggSpeed = 1;
 
 const rottenEgg = new Image();
 rottenEgg.src = './images/rottenEgg.png';
-const rottenEggHeight = 15;
-const rottenEggWidth = 30;
+const rottenEggHeight = 30;
+const rottenEggWidth = 15;
 let rottenEggX = myCanvas.width / 2;
 let rottenEggY = myCanvas.height - rottenEggHeight;
 let rottenEggSpeed = 1;
@@ -47,9 +46,6 @@ let isMovingLeft = false;
 let isMovingRight = false;
 
 let eggs = [];
-
-const music = document.querySelector("#music");
-music.play();
 
 function startGame() {
   animateId = requestAnimationFrame(drawEggs);
@@ -111,6 +107,8 @@ function checkCollision() {
     }
   });
 }
+
+background.onload = function () {backgroundLoaded = true};
 
 function animate() {
   if(!gameOver) {
@@ -201,7 +199,6 @@ window.onload = () => {
   document.getElementById("reset-button").onclick = () => {
     reset();
   };
-  backgroundLoaded = true;
 };
 
 setInterval(checkCollision, 30);
