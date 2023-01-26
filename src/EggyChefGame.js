@@ -52,6 +52,7 @@ music.play();
 function startGame() {
   animateId = requestAnimationFrame(drawEggs);
   setInterval(generateEggs, 2000);
+  backgroundLoaded = true;
 }
 
 function generateEggs() {
@@ -197,7 +198,6 @@ window.onload = () => {
   document.getElementById("reset-button").onclick = () => {
     reset();
   };
-  backgroundLoaded = true;
 };
 
 setInterval(checkCollision, 30);
