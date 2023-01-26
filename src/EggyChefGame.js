@@ -11,11 +11,11 @@ kitchen.src = './images/kitchen.jpg';
 
 const chef = new Image();
 chef.src = './images/chef.png';
-const chefWidth = 150;
+const chefWidth = 180;
 const chefHeight = 250;
 let chefX = myCanvas.width / 2;
 let chefY = myCanvas.height - chefHeight;
-let chefSpeed = 5;
+let chefSpeed = 10;
 
 const eggImage = new Image();
 eggImage.src = './images/egg.png';
@@ -23,7 +23,7 @@ const eggHeight = 15;
 const eggWidth = 30;
 let eggX = myCanvas.width / 2;
 let eggY = myCanvas.height - eggHeight;
-let eggSpeed = 0.3;
+let eggSpeed = 1;
 
 const rottenEgg = new Image();
 rottenEgg.src = './images/rottenEgg.png';
@@ -31,7 +31,7 @@ const rottenEggHeight = 15;
 const rottenEggWidth = 30;
 let rottenEggX = myCanvas.width / 2;
 let rottenEggY = myCanvas.height - rottenEggHeight;
-let rottenEggSpeed = 0.3;
+let rottenEggSpeed = 1;
 
 const requiredEggs1 = 2;
 const requiredEggs2 = 5;
@@ -48,6 +48,9 @@ let isMovingRight = false;
 
 let eggs = [];
 
+const music = document.querySelector("#music");
+music.play();
+
 function startGame() {
   animateId = requestAnimationFrame(drawEggs);
   setInterval(generateEggs, 2000);
@@ -56,7 +59,7 @@ function startGame() {
 function generateEggs() {
   let randomX = Math.floor(Math.random() * (myCanvas.width - eggWidth));
   let randomY = Math.floor(Math.random() * (myCanvas.height - eggHeight));
-  let randomSpeed = Math.floor(Math.random() * 10) + 5;
+  let randomSpeed = Math.floor(Math.random() * 10) + 1;
   let randomType = Math.random() < 0.8 ? "rotten" : "normal"; // 20% chance of normal egg, 80% chance of rotten egg
   let egg = {
     x: randomX,
@@ -129,11 +132,11 @@ function animate() {
 function increaseEggSpeed() {
   if (currentLevel === 2) {
     eggs.forEach(egg => {
-      egg.speed += 0.1;
+      egg.speed += 0.25;
     });
   } else if (currentLevel === 3) {
     eggs.forEach(egg => {
-      egg.speed += 0.15;
+      egg.speed += 0.5;
     });
   }
 }
@@ -141,11 +144,11 @@ function increaseEggSpeed() {
 if (score === requiredEggs1 && currentLevel === 1) {
   currentLevel++;
   increaseEggSpeed();
-  // do something to show level up
+  alert("Congratulations! You've reached level 2!");
 } else if (score === requiredEggs2 && currentLevel === 2) {
   currentLevel++;
   increaseEggSpeed();
-  // do something to show level up
+  alert("Congratulations! You've reached level 3!");
 }
 
 if (score === requiredEggs3 && currentLevel === 3) {
@@ -166,7 +169,7 @@ function reset() {
   clearInterval(checkCollisionInterval);
   generateEggsInterval = setInterval(generateEggs, 2000);
   checkCollisionInterval = setInterval(checkCollision, 30);
-  eggImageSpeed = 2;
+  eggImageSpeed = 1;
 
   if (score === requiredEggs3 && currentLevel === 3) {
     gameOver = true;
@@ -192,6 +195,9 @@ document.addEventListener("keydown", (event) => {
 window.onload = () => {
   document.getElementById("start-button").onclick = () => {
     startGame();
+  };
+  document.getElementById("reset-button").onclick = () => {
+    reset();
   };
 };
 
