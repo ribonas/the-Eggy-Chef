@@ -4,8 +4,6 @@ const ctx = myCanvas.getContext("2d");
 const background = new Image();
 background.src = './images/kitchenBg.jpg';
 
-myCanvas.style.border = "2px solid black";
-
 const kitchen = new Image();
 kitchen.src = './images/kitchen.jpg';
 
