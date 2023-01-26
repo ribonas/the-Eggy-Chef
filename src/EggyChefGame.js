@@ -3,6 +3,8 @@ const ctx = myCanvas.getContext("2d");
 
 const background = new Image();
 background.src = './images/kitchenBg.jpg';
+let backgroundLoaded = false;
+background.onload = function () { backgroundLoaded = true };
 
 const kitchen = new Image();
 kitchen.src = './images/kitchen.jpg';
@@ -52,7 +54,6 @@ music.play();
 function startGame() {
   animateId = requestAnimationFrame(drawEggs);
   setInterval(generateEggs, 2000);
-  backgroundLoaded = true;
 }
 
 function generateEggs() {
@@ -114,7 +115,9 @@ function checkCollision() {
 function animate() {
   if(!gameOver) {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-    ctx.drawImage(background, 0, 0, myCanvas.width, myCanvas.height);
+    if (backgroundLoaded) {
+      ctx.drawImage(background, 0, 0, myCanvas.width, myCanvas.height);
+    }
     drawEggs();
     drawChef();
     requestAnimationFrame(animate);
@@ -198,6 +201,7 @@ window.onload = () => {
   document.getElementById("reset-button").onclick = () => {
     reset();
   };
+  backgroundLoaded = true;
 };
 
 setInterval(checkCollision, 30);
