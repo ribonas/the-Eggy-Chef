@@ -197,6 +197,7 @@ window.onload = () => {
   document.getElementById("reset-button").onclick = () => {
     reset();
   };
+  backgroundLoaded = true;
 };
 
 setInterval(checkCollision, 30);
