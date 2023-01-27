@@ -143,6 +143,7 @@ function animate() {
     drawChef();
     drawScore();
     drawLevel();
+    increaseEggSpeed();
     requestAnimationFrame(animate);
   }
 
@@ -158,23 +159,13 @@ function animate() {
 function increaseEggSpeed() {
   if (currentLevel === 2) {
     eggs.forEach(egg => {
-      egg.speed += 0.5;
+      egg.speed += 0.01;
     });
   } else if (currentLevel === 3) {
     eggs.forEach(egg => {
-      egg.speed += 1;
+      egg.speed += 0.015;
     });
   }
-}
-
-if (score === requiredEggs1 && currentLevel === 1 && !alertShown) {
-  alertShown = true;
-  currentLevel++;
-  increaseEggSpeed();
-} else if (score === requiredEggs2 && currentLevel === 2 && !alertShown) {
-  alertShown = true;
-  currentLevel++;
-  increaseEggSpeed();
 }
 
 if (score === requiredEggs3 && currentLevel === 3) {
