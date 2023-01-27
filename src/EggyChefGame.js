@@ -14,12 +14,12 @@ const chefWidth = 180;
 const chefHeight = 250;
 let chefX = myCanvas.width / 2;
 let chefY = myCanvas.height - chefHeight;
-let chefSpeed = 10;
+let chefSpeed = 12;
 
 const eggImage = new Image();
 eggImage.src = './images/egg.png';
 const eggHeight = 30;
-const eggWidth = 15;
+const eggWidth = 18;
 let eggX = myCanvas.width / 2;
 let eggY = myCanvas.height - eggHeight;
 let eggSpeed = 1;
@@ -27,7 +27,7 @@ let eggSpeed = 1;
 const rottenEgg = new Image();
 rottenEgg.src = './images/rottenEgg.png';
 const rottenEggHeight = 30;
-const rottenEggWidth = 15;
+const rottenEggWidth = 18;
 let rottenEggX = myCanvas.width / 2;
 let rottenEggY = myCanvas.height - rottenEggHeight;
 let rottenEggSpeed = 1;
@@ -120,8 +120,8 @@ function checkCollision() {
         } else if (score === requiredEggs3 && currentLevel === 3) {
           gameOver = true;
           alert("You Win! Your final score is: " + score);
+          reset();
         }
-        updateScore();
       } else {
         gameOver = true;
         alert("Game Over! Your final score is: " + score);
@@ -163,7 +163,7 @@ function increaseEggSpeed() {
     });
   } else if (currentLevel === 3) {
     eggs.forEach(egg => {
-      egg.speed += 0.015;
+      egg.speed += 0.018;
     });
   }
 }
