@@ -158,11 +158,11 @@ function animate() {
 function increaseEggSpeed() {
   if (currentLevel === 2) {
     eggs.forEach(egg => {
-      egg.speed += 0.25;
+      egg.speed += 0.5;
     });
   } else if (currentLevel === 3) {
     eggs.forEach(egg => {
-      egg.speed += 0.5;
+      egg.speed += 1;
     });
   }
 }
