@@ -96,6 +96,12 @@ function updateScore() {
   ctx.fillText("Score: " + score, 10, 30);
 }
 
+function drawLevel() {
+  ctx.font = "25px Arial";
+  ctx.fillStyle = "white";
+  ctx.fillText(`Level: ${currentLevel}`, canvas.width - 100, 30);
+}
+
 function checkCollision() {
   eggs.forEach((egg, index) => {
     if (
@@ -136,6 +142,7 @@ function animate() {
     drawEggs();
     drawChef();
     drawScore();
+    drawLevel();
     requestAnimationFrame(animate);
   }
 
@@ -164,12 +171,10 @@ if (score === requiredEggs1 && currentLevel === 1 && !alertShown) {
   alertShown = true;
   currentLevel++;
   increaseEggSpeed();
-  alert("Congratulations! You've reached level 2!");
 } else if (score === requiredEggs2 && currentLevel === 2 && !alertShown) {
   alertShown = true;
   currentLevel++;
   increaseEggSpeed();
-  alert("Congratulations! You've reached level 3!");
 }
 
 if (score === requiredEggs3 && currentLevel === 3) {
