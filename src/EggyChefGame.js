@@ -2,7 +2,7 @@ const myCanvas = document.querySelector("#canvas");
 const ctx = myCanvas.getContext("2d");
 
 const background = new Image();
-background.src = './images/kitchenBg.jpg';
+background.src = './images/kitchenBG.jpg';
 let backgroundLoaded = false;
 
 const kitchen = new Image();
@@ -119,6 +119,7 @@ function checkCollision() {
       } else {
         gameOver = true;
         alert("Game Over! Your final score is: " + score);
+        reset();
       }
     }
   });
@@ -143,6 +144,7 @@ function animate() {
     clearInterval(generateEggsInterval);
     clearInterval(checkCollisionInterval);
     alert("Game Over! Your final score is: " + score);
+    reset()
   }
 }
 
