@@ -14,7 +14,7 @@ const chefWidth = 180;
 const chefHeight = 250;
 let chefX = myCanvas.width / 2;
 let chefY = myCanvas.height - chefHeight;
-let chefSpeed = 12;
+let chefSpeed = 15;
 
 const eggImage = new Image();
 eggImage.src = './images/egg.png';
@@ -83,13 +83,6 @@ function drawChef () {
 }
 
 function drawScore() {
-  ctx.font = "25px Arial";
-  ctx.fillStyle = "white";
-  ctx.textAlign = "left";
-  ctx.fillText("Score: " + score, 10, 30);
-}
-
-function updateScore() {
   ctx.font = "25px Arial";
   ctx.fillStyle = "white";
   ctx.textAlign = "left";
