@@ -39,6 +39,7 @@ const requiredEggs3 = 8;
 let currentLevel = 1;
 let score = 0;
 let gameOver = false;
+let alertShown = false;
 let gameOverAlreadyShown = false;
 let animateId;
 
@@ -54,8 +55,8 @@ function startGame() {
 
 function generateEggs() {
   let randomX = Math.floor(Math.random() * (myCanvas.width - eggWidth));
-  let randomY = Math.floor(Math.random() * (myCanvas.height - eggHeight));
-  let randomSpeed = Math.floor(Math.random() * 10) + 1;
+  let randomY = 0;
+  let randomSpeed = 1;
   let randomType = Math.random() < 0.8 ? "rotten" : "normal"; // 20% chance of normal egg, 80% chance of rotten egg
   let egg = {
     x: randomX,
@@ -81,6 +82,20 @@ function drawChef () {
   ctx.drawImage(chef, chefX, chefY, chefWidth, chefHeight);
 }
 
+function drawScore() {
+  ctx.font = "25px Arial";
+  ctx.fillStyle = "white";
+  ctx.textAlign = "left";
+  ctx.fillText("Score: " + score, 10, 30);
+}
+
+function updateScore() {
+  ctx.font = "25px Arial";
+  ctx.fillStyle = "white";
+  ctx.textAlign = "left";
+  ctx.fillText("Score: " + score, 10, 30);
+}
+
 function checkCollision() {
   eggs.forEach((egg, index) => {
     if (
@@ -98,11 +113,12 @@ function checkCollision() {
           currentLevel++;
         } else if (score === requiredEggs3 && currentLevel === 3) {
           gameOver = true;
-          alert("You Win!");
+          alert("You Win! Your final score is: " + score);
         }
+        updateScore();
       } else {
         gameOver = true;
-        alert("Game Over!");
+        alert("Game Over! Your final score is: " + score);
       }
     }
   });
@@ -111,13 +127,14 @@ function checkCollision() {
 background.onload = function () {backgroundLoaded = true};
 
 function animate() {
-  if(!gameOver) {
+  if (!gameOver) {
     ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
     if (backgroundLoaded) {
       ctx.drawImage(background, 0, 0, myCanvas.width, myCanvas.height);
     }
     drawEggs();
     drawChef();
+    drawScore();
     requestAnimationFrame(animate);
   }
 
@@ -125,7 +142,7 @@ function animate() {
     gameOverAlreadyShown = true;
     clearInterval(generateEggsInterval);
     clearInterval(checkCollisionInterval);
-    alert("Game Over!");
+    alert("Game Over! Your final score is: " + score);
   }
 }
 
@@ -141,11 +158,13 @@ function increaseEggSpeed() {
   }
 }
 
-if (score === requiredEggs1 && currentLevel === 1) {
+if (score === requiredEggs1 && currentLevel === 1 && !alertShown) {
+  alertShown = true;
   currentLevel++;
   increaseEggSpeed();
   alert("Congratulations! You've reached level 2!");
-} else if (score === requiredEggs2 && currentLevel === 2) {
+} else if (score === requiredEggs2 && currentLevel === 2 && !alertShown) {
+  alertShown = true;
   currentLevel++;
   increaseEggSpeed();
   alert("Congratulations! You've reached level 3!");
@@ -153,11 +172,13 @@ if (score === requiredEggs1 && currentLevel === 1) {
 
 if (score === requiredEggs3 && currentLevel === 3) {
   gameOver = true;
-  alert("You Win!");
+  alert("You Win! Your final score is: " + score);
 }
 
 function reset() {
   gameOver = false;
+  gameOverAlreadyShown = false;
+  alertShown = false;
   currentLevel = 1;
   score = 0;
   eggs = [];
@@ -170,17 +191,6 @@ function reset() {
   generateEggsInterval = setInterval(generateEggs, 2000);
   checkCollisionInterval = setInterval(checkCollision, 30);
   eggImageSpeed = 1;
-
-  if (score === requiredEggs3 && currentLevel === 3) {
-    gameOver = true;
-    alert("You Win!");
-    reset();
-  } else if (egg.type === "rotten") {
-    gameOver = true;
-    console.log('jeje')
-    alert("Game Over!");
-    reset();
-  }
 }
 
 document.addEventListener("keydown", (event) => {
